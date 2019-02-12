@@ -1,7 +1,7 @@
-[![Dependency Status](https://david-dm.org/prismicio/reactjs-starter.svg)](https://david-dm.org/prismicio/reactjs-starter)
+[![Dependency Status](https://david-dm.org/raulg/reactjs-website.svg)](https://david-dm.org/raulg/reactjs-website)
 
-# Prismic React Starter
-This project has been created with [`create-react-app`](https://github.com/facebookincubator/create-react-app). We added a zest of [prismic](https://github.com/prismicio/javascript-kit) inside it.
+# Prismic React Site Example
+This project is an implementation of the Prismic multipage site demo using ReactJS. Built up from the starter project, it's meant to provide you with an idea of how to build your own sites using the Prismic features. Read our user guide (once published) if you need guidance on how to use this repository.
 
 ### Install dependencies
 ```
@@ -26,9 +26,6 @@ Build and open your browser to http://localhost:3000.
 ### Deployment
 This project is ready for deployment using [Netlify](https://www.netlify.com), if you're interested in deploying to other platforms review the suggested [solutions](https://facebook.github.io/create-react-app/docs/deployment).
 
-### Get started with Prismic
-
-You can find out how to get started with prismic.io from [our React documentation](https://prismic.io/docs/reactjs/getting-started/getting-started-from-scratch).
 
 ### Licence
 
