@@ -63,7 +63,7 @@ export default class Page extends React.Component {
   render() {
     if (this.state.doc) {
       return (
-        <div className="homepage">
+        <div className="homepage" data-wio-id={this.state.doc.id}>
           <Header prismicCtx={this.props.prismicCtx} />
           {this.homePageBanner()}
           <div className="container">
