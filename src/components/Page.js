@@ -1,6 +1,6 @@
 import React from 'react';
 import NotFound from '../NotFound';
-import PrismicReact from 'prismic-reactjs';
+import SliceZone from './slices/SliceZone';
 
 export default class Page extends React.Component {
   constructor(props){
@@ -39,7 +39,12 @@ export default class Page extends React.Component {
 
   render() {
     if (this.state.doc) {
-      return null;
+      return (
+        <div className="container">
+          {/*Header menu*/}
+          <SliceZone sliceZone={this.state.doc.data.page_content} prismicCtx={this.props.prismicCtx} />
+        </div>
+      );
     } else if (this.state.notFound) {
       return <NotFound />;
     }
