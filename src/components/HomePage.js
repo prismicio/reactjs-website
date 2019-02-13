@@ -2,6 +2,8 @@ import React from 'react';
 import NotFound from '../NotFound';
 import {Link, RichText} from 'prismic-reactjs';
 import SliceZone from './slices/SliceZone';
+import Header from './Header';
+import Footer from './Footer';
 
 export default class Page extends React.Component {
   constructor(props){
@@ -60,13 +62,13 @@ export default class Page extends React.Component {
   render() {
     if (this.state.doc) {
       return (
-        <div>
-          {/*Menu header*/}
+        <div className="homepage">
+          <Header prismicCtx={this.props.prismicCtx} />
           {this.homePageBanner()}
           <div className="container">
             <SliceZone sliceZone={this.state.doc.data.page_content} prismicCtx={this.props.prismicCtx} />
           </div>
-        {/*Footer*/}
+          <Footer />
         </div>
       );
     } else if (this.state.notFound) {
