@@ -53,16 +53,16 @@
       "type" : "Slices",
       "fieldset" : "Slice zone",
       "config" : {
+        "labels" : {
+          "text_section" : [ {
+            "name" : "1col",
+            "display" : "1 Column"
+          }, {
+            "name" : "2col",
+            "display" : "2 Columns"
+          } ]
+        },
         "choices" : {
-          "labels" : {
-            "text_section" : [ {
-              "name" : "1col",
-              "display" : "1 Column"
-            }, {
-              "name" : "2col",
-              "display" : "2 Columns"
-            } ]
-          },
           "text_section" : {
             "type" : "Slice",
             "fieldset" : "Text Section",

@@ -13,6 +13,6 @@ export default class Preview extends React.Component {
   }
 
   render() {
-    return <p>Loading previews...</p>;
+    return <div></div>;
   }
 }

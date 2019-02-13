@@ -53,7 +53,6 @@ export default class Header extends React.Component {
           <a href="./">
             <div className="logo">Example Site</div>
           </a>
-        {/*Render only if menu content exists*/}
           <nav>
             <ul>
               {menu}
