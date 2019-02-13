@@ -1,9 +1,10 @@
 import React from 'react';
-import NotFound from '../NotFound';
+import NotFound from './NotFound';
 import {Link, RichText} from 'prismic-reactjs';
 import SliceZone from './slices/SliceZone';
 import Header from './Header';
 import Footer from './Footer';
+import Loader from './Loader';
 
 export default class Page extends React.Component {
   constructor(props){
@@ -74,7 +75,6 @@ export default class Page extends React.Component {
     } else if (this.state.notFound) {
       return <NotFound />;
     }
-    return <h1>Loading</h1>;
-    /*Replace with loader component from Blog*/
+    return <Loader />;
   }
 }

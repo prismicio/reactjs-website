@@ -1,6 +1,9 @@
 import React from 'react';
-import NotFound from '../NotFound';
+import NotFound from './NotFound';
 import SliceZone from './slices/SliceZone';
+import Header from './Header';
+import Footer from './Footer';
+import Loader from './Loader';
 
 export default class Page extends React.Component {
   constructor(props){
@@ -40,14 +43,17 @@ export default class Page extends React.Component {
   render() {
     if (this.state.doc) {
       return (
-        <div className="container">
-          {/*Header menu*/}
-          <SliceZone sliceZone={this.state.doc.data.page_content} prismicCtx={this.props.prismicCtx} />
+        <div className="page">
+          <Header prismicCtx={this.props.prismicCtx} />
+          <div className="container">
+            <SliceZone sliceZone={this.state.doc.data.page_content} prismicCtx={this.props.prismicCtx} />
+          </div>
+          <Footer />
         </div>
       );
     } else if (this.state.notFound) {
       return <NotFound />;
     }
-    return <h1>Loading</h1>;
+    return <Loader />;
   }
 }

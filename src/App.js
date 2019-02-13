@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import Preview from './Preview';
 import Help from './Help';
-import NotFound from './NotFound';
+import NotFound from './components/NotFound';
 import HomePage from './components/HomePage';
 import Page from './components/Page';
 
