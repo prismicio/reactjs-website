@@ -1,6 +1,7 @@
 import React from 'react';
 import NotFound from '../NotFound';
 import {Link, RichText} from 'prismic-reactjs';
+import SliceZone from './slices/SliceZone';
 
 export default class Page extends React.Component {
   constructor(props){
@@ -50,6 +51,7 @@ export default class Page extends React.Component {
             href={Link.url(banner.button_link, this.props.prismicCtx.linkResolver)}>
             {RichText.asText(banner.button_label)}
           </a>
+        {/*Don't display if missing link button*/}
         </div>
       </section>
     );
@@ -59,12 +61,18 @@ export default class Page extends React.Component {
     if (this.state.doc) {
       return (
         <div>
+          {/*Menu header*/}
           {this.homePageBanner()}
+          <div className="container">
+            <SliceZone sliceZone={this.state.doc.data.page_content} prismicCtx={this.props.prismicCtx} />
+          </div>
+        {/*Footer*/}
         </div>
       );
     } else if (this.state.notFound) {
       return <NotFound />;
     }
     return <h1>Loading</h1>;
+    /*Replace with loader component from Blog*/
   }
 }

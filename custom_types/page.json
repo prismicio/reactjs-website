@@ -11,6 +11,15 @@
       "type" : "Slices",
       "fieldset" : "Slice zone",
       "config" : {
+        "labels" : {
+          "text_section" : [ {
+            "name" : "1col",
+            "display" : "1 Column"
+          }, {
+            "name" : "2col",
+            "display" : "2 Columns"
+          } ]
+        },
         "choices" : {
           "text_section" : {
             "type" : "Slice",
