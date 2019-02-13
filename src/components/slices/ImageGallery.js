@@ -8,12 +8,13 @@ export default class ImageGallery extends React.Component {
         <div className="gallery-item" key={index}>
           <img src={item.image.url} alt={item.image.alt} />
           {RichText.render(item.image_description, this.props.prismicCtx.linkResolver)}
-          {/*Do not show if undefined*/}
-          <p className="gallery-link">
-            <a href={Link.url(item.link, this.props.prismicCtx.linkResolver)}>
-              {RichText.asText(item.link_label)}
-            </a>
-          </p>
+          {RichText.asText(item.link_label) !== "" ? (
+            <p className="gallery-link">
+              <a href={Link.url(item.link, this.props.prismicCtx.linkResolver)}>
+                {RichText.asText(item.link_label)}
+              </a>
+            </p>
+          ) : '' }
         </div>
       );
     });

@@ -50,11 +50,12 @@ export default class Page extends React.Component {
         <div className="banner-content container">
           <h2 className="banner-title">{RichText.asText(banner.title)}</h2>
           <p className="banner-description">{RichText.asText(banner.tagline)}</p>
-          <a className="banner-button"
-            href={Link.url(banner.button_link, this.props.prismicCtx.linkResolver)}>
-            {RichText.asText(banner.button_label)}
-          </a>
-        {/*Don't display if missing link button*/}
+          {RichText.asText(banner.button_label) !== "" ? (
+            // Displays the button link only if it's been defined
+            <a className="banner-button" href={Link.url(banner.button_link, this.props.prismicCtx.linkResolver)}>
+              {RichText.asText(banner.button_label)}
+            </a>
+          ) : ''}
         </div>
       </section>
     );

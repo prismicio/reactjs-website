@@ -8,12 +8,13 @@ export default class ImageHighlight extends React.Component {
         <div className="highlight-left">
           {RichText.render(this.props.slice.primary.title, this.props.prismicCtx.linkResolver)}
           {RichText.render(this.props.slice.primary.headline, this.props.prismicCtx.linkResolver)}
-          <p>
-            {/*Don't render if undefined, will deal with later*/}
-            <a href={Link.url(this.props.slice.primary.link, this.props.prismicCtx.linkResolver)}>
-              {RichText.asText(this.props.slice.primary.link_label)}
-            </a>
-          </p>
+          {RichText.asText(this.props.slice.primary.link_label) !== "" ? (
+            <p>
+              <a href={Link.url(this.props.slice.primary.link, this.props.prismicCtx.linkResolver)}>
+                {RichText.asText(this.props.slice.primary.link_label)}
+              </a>
+            </p>
+          ) : '' }
         </div>
         <div className="highlight-right">
           <img src={this.props.slice.primary.featured_image.url} alt={this.props.slice.primary.featured_image.alt} />

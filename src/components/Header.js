@@ -39,11 +39,11 @@ export default class Header extends React.Component {
 
   render() {
     if (this.state.doc) {
-      const menuLink = this.state.doc.data.menu_links.map((link, index) => {
+      const menu = this.state.doc.data.menu_links.map((menuLink) => {
         return (
-          <li>
-            <a href={Link.url(link.link, this.props.prismicCtx.linkResolver)}>
-              {RichText.asText(link.label)}
+          <li key={menuLink.link.id}>
+            <a href={Link.url(menuLink.link, this.props.prismicCtx.linkResolver)}>
+              {RichText.asText(menuLink.label)}
             </a>
           </li>
         );
@@ -56,7 +56,7 @@ export default class Header extends React.Component {
         {/*Render only if menu content exists*/}
           <nav>
             <ul>
-              {menuLink}
+              {menu}
             </ul>
           </nav>
         </header>
