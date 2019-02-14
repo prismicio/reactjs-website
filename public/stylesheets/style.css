@@ -217,6 +217,15 @@ footer a {
   margin-top: 10px;
 }
 
+/* 404 error page */
+.not-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 50vw;
+  align-items: center;
+}
+
 /* Loader animation */
 #loader {
   display: flex;
