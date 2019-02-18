@@ -1,6 +1,6 @@
 export default {
 
-  apiEndpoint: 'https://sample-site.prismic.io/api/v2',
+  apiEndpoint: 'https://your-repo-name.prismic.io/api/v2',
 
   // -- Access token if the Prismic repository is not public
   // accessToken: 'xxxxxx',
