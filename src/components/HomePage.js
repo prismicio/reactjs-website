@@ -28,7 +28,7 @@ export default class Page extends React.Component {
 
   fetchPage(props) {
     if (props.prismicCtx) {
-      // We are using the function to get a document by its uid
+      // We use a single document query to get the only Homepage document
       return props.prismicCtx.api.getSingle('homepage', {}, (err, doc) => {
         if (doc) {
           // We put the retrieved content in the state as a doc variable
@@ -42,8 +42,7 @@ export default class Page extends React.Component {
     return null;
   }
 
-  homePageBanner() {
-    const banner = this.state.doc.data.homepage_banner[0];
+  homePageBanner(banner) {
     return (
       <section className="homepage-banner"
         style={{backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url(' + banner.image.url +')'}}>
@@ -66,7 +65,7 @@ export default class Page extends React.Component {
       return (
         <div className="homepage" data-wio-id={this.state.doc.id}>
           <Header prismicCtx={this.props.prismicCtx} />
-          {this.homePageBanner()}
+          {this.homePageBanner(this.state.doc.data.homepage_banner[0])}
           <div className="container">
             <SliceZone sliceZone={this.state.doc.data.page_content} prismicCtx={this.props.prismicCtx} />
           </div>

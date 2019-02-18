@@ -3,7 +3,6 @@
   "version": "0.1.5",
   "private": true,
   "dependencies": {
-    "highlight.js": "~9.13.1",
     "prismic-javascript": "^2.0.1",
     "prismic-reactjs": "^0.3.2",
     "qs": "^6.4.0",

@@ -23,7 +23,7 @@ export default class Header extends React.Component {
 
   fetchPage(props) {
     if (props.prismicCtx) {
-      // We are using the function to get a document by its uid
+      // We use a single document query to get the only menu document
       return props.prismicCtx.api.getSingle('menu', {}, (err, doc) => {
         if (doc) {
           // We put the retrieved content in the state as a doc variable
@@ -37,17 +37,21 @@ export default class Header extends React.Component {
     return null;
   }
 
+  menuLinks() {
+    return this.state.doc.data.menu_links.map((menuLink) => {
+      return (
+        <li key={menuLink.link.id}>
+          <a href={Link.url(menuLink.link, this.props.prismicCtx.linkResolver)}>
+            {RichText.asText(menuLink.label)}
+          </a>
+        </li>
+      );
+    });
+  }
+
   render() {
     if (this.state.doc) {
-      const menu = this.state.doc.data.menu_links.map((menuLink) => {
-        return (
-          <li key={menuLink.link.id}>
-            <a href={Link.url(menuLink.link, this.props.prismicCtx.linkResolver)}>
-              {RichText.asText(menuLink.label)}
-            </a>
-          </li>
-        );
-      });
+      
       return (
         <header className="site-header">
           <a href="./">
@@ -55,7 +59,7 @@ export default class Header extends React.Component {
           </a>
           <nav>
             <ul>
-              {menu}
+              {this.menuLinks()}
             </ul>
           </nav>
         </header>
