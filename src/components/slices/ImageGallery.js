@@ -2,7 +2,7 @@ import React from 'react';
 import {Link, RichText} from 'prismic-reactjs';
 
 export default class ImageGallery extends React.Component {
-  galleryItem() {
+  galleryItems() {
     return this.props.slice.items.map((item, index) => {
       return (
         <div className="gallery-item" key={index}>
@@ -25,7 +25,7 @@ export default class ImageGallery extends React.Component {
       <section className="image-gallery content-section">
         {RichText.render(this.props.slice.primary.gallery_title, this.props.prismicCtx.linkResolver)}
         <div className="gallery">
-          {this.galleryItem()}
+          {this.galleryItems()}
         </div>
       </section>
     );
