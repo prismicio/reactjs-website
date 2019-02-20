@@ -1,37 +1,37 @@
 [![Dependency Status](https://david-dm.org/raulg/reactjs-website.svg)](https://david-dm.org/raulg/reactjs-website)
 
 # Prismic React Site Example
-This project is an implementation of the Prismic multipage site demo using ReactJS. Built up from the starter project, it's meant to provide you with an idea of how to build your own sites using the Prismic features. Read our user guide (once published) if you need guidance on how to use this repository.
+This project is an implementation of the Prismic multipage site demo using ReactJS. Built up from the starter project, it's meant to provide you with an idea of how to build your own sites using the Prismic features. Read our [user guide](https://intercom.help/prismicio/examples/react-js-samples/sample-multi-page-site-with-navigation-in-reactjs) if you need guidance on how to use this repository.
 
-### Install dependencies
+## Install dependencies
 ```
 > $ npm install
 ```
-### Runs the app in the development mode
+## Run the app in the development mode
 Build and open your browser to http://localhost:3000.
 ```
 > $ npm start
 ```
 
-### Launches the test runner in the interactive watch mode
+## Launch the test runner in the interactive watch mode
 ```
 > $ npm run test
 ```
 
-### Builds the app for production to the build folder
+## Build the app for production to the build folder
 ```
 > $ npm run build
 ```
 
-### Deployment
+## Deployment
 This project is ready for deployment using [Netlify](https://www.netlify.com), if you're interested in deploying to other platforms review the suggested [solutions](https://facebook.github.io/create-react-app/docs/deployment).
 
 
-### Licence
+## Licence
 
 This software is licensed under the Apache 2 license, quoted below.
 
-Copyright 2017 Prismic.io (https://prismic.io).
+Copyright 2017 Prismic (https://prismic.io).
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this project except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
 
