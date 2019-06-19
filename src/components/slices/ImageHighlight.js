@@ -1,25 +1,39 @@
-import React from 'react';
-import {Link, RichText} from 'prismic-reactjs';
+import React from 'react'
+import { Link as RouterLink } from 'react-router-dom'
+import { Link, RichText } from 'prismic-reactjs'
+import { shape, array, object } from 'prop-types'
+import { prismicPropType, imagePropType } from '../../utils/propTypes'
 
-export default class ImageHighlight extends React.Component {
-  render() {
-    return (
-      <section className="highlight content-section">
-        <div className="highlight-left">
-          {RichText.render(this.props.slice.primary.title, this.props.prismicCtx.linkResolver)}
-          {RichText.render(this.props.slice.primary.headline, this.props.prismicCtx.linkResolver)}
-          {RichText.asText(this.props.slice.primary.link_label) !== "" ? (
-            <p>
-              <a href={Link.url(this.props.slice.primary.link, this.props.prismicCtx.linkResolver)}>
-                {RichText.asText(this.props.slice.primary.link_label)}
-              </a>
-            </p>
-          ) : '' }
-        </div>
-        <div className="highlight-right">
-          <img src={this.props.slice.primary.featured_image.url} alt={this.props.slice.primary.featured_image.alt} />
-        </div>
-      </section>
-    );
-  }
+const ImageHighlight = ({ slice, prismicCtx }) => (
+  <section className='highlight content-section'>
+    <div className='highlight-left'>
+      <RichText render={slice.primary.title} linkResolver={prismicCtx.linkResolver} />
+      <RichText render={slice.primary.headline} linkResolver={prismicCtx.linkResolver} />
+      {RichText.asText(slice.primary.link_label) !== '' ? (
+        <p>
+          <RouterLink to={Link.url(slice.primary.link, prismicCtx.linkResolver)}>
+            {RichText.asText(slice.primary.link_label)}
+          </RouterLink>
+        </p>
+      ) : '' }
+    </div>
+    <div className='highlight-right'>
+      <img src={slice.primary.featured_image.url} alt={slice.primary.featured_image.alt} />
+    </div>
+  </section>
+)
+
+ImageHighlight.propTypes = {
+  slice: shape({
+    primary: shape({
+      featured_image: imagePropType.isRequired,
+      headline: array.isRequired,
+      link_label: array,
+      link: object,
+      title: array.isRequired
+    }).isRequired
+  }).isRequired,
+  prismicCtx: prismicPropType.isRequired
 }
+
+export default ImageHighlight

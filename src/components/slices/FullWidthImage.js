@@ -1,11 +1,19 @@
-import React from 'react';
+import React from 'react'
+import { shape } from 'prop-types'
+import { imagePropType } from '../../utils/propTypes'
 
-export default class FullWidthImage extends React.Component {
-  render() {
-    return (
-      <section className="full-width-image content-section">
-        <img src={this.props.slice.primary.image.url} alt={this.props.slice.primary.image.alt} />
-      </section>
-    );
-  }
+const FullWidthImage = ({ slice }) => (
+  <section className='full-width-image content-section'>
+    <img src={slice.primary.image.url} alt={slice.primary.image.alt} />
+  </section>
+)
+
+FullWidthImage.propTypes = {
+  slice: shape({
+    primary: shape({
+      image: imagePropType.isRequired
+    }).isRequired
+  }).isRequired
 }
+
+export default FullWidthImage

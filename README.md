@@ -1,37 +1,44 @@
 [![Dependency Status](https://david-dm.org/raulg/reactjs-website.svg)](https://david-dm.org/raulg/reactjs-website)
 
 # Prismic React Site Example
-This project is an implementation of the Prismic multipage site demo using ReactJS. Built up from the starter project, it's meant to provide you with an idea of how to build your own sites using the Prismic features. Read our [user guide](https://intercom.help/prismicio/examples/react-js-samples/sample-multi-page-site-with-navigation-in-reactjs) if you need guidance on how to use this repository.
+This project is an implementation of the Prismic multipage site demo using ReactJS. Built up from the starter project, it's meant to provide you with an idea of how to build your own sites using the Prismic features. Read our user guide (once published) if you need guidance on how to use this repository.
 
-## Install dependencies
+### Getting started quickly with Prismic Themes
+You can use our [Prismic-CLI](https://github.com/prismicio/prismic-cli) tool to quickly install this project in your machine, as well as setting up a Prismic repository with the required Custom Types. Just follow the instructions in your terminal to get started!
+
+```
+> $ npm install -g prismic-cli
+> $ prismic theme https://github.com/raulg/reactjs-website --conf /src/prismic-configuration.js
+```
+
+### Install dependencies
 ```
 > $ npm install
 ```
-## Run the app in the development mode
+### Runs the app in the development mode
 Build and open your browser to http://localhost:3000.
 ```
 > $ npm start
 ```
 
-## Launch the test runner in the interactive watch mode
-```
-> $ npm run test
-```
-
-## Build the app for production to the build folder
+### Builds the app for production to the build folder
 ```
 > $ npm run build
 ```
 
-## Deployment
-This project is ready for deployment using [Netlify](https://www.netlify.com), if you're interested in deploying to other platforms review the suggested [solutions](https://facebook.github.io/create-react-app/docs/deployment).
+### Deployment
+This project is ready for deployment using [Netlify](https://www.netlify.com), thanks to the addition of a `_redirects` file located in the public folder. If you're interested in deploying to other platforms review the suggested [solutions](https://facebook.github.io/create-react-app/docs/deployment).
+
+### Get started with Prismic
+
+You can find out how to get started with Prismic from [our React documentation](https://prismic.io/docs/reactjs/getting-started/getting-started-from-scratch).
 
 
-## Licence
+### Licence
 
 This software is licensed under the Apache 2 license, quoted below.
 
-Copyright 2017 Prismic (https://prismic.io).
+Copyright 2017 Prismic.io (https://prismic.io).
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this project except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
 

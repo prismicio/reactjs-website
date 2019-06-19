@@ -1,23 +1,21 @@
-import React from 'react';
+import React from 'react'
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Route,
-  Switch,
-} from 'react-router-dom';
-import Preview from './Preview';
-import NotFound from './components/NotFound';
-import HomePage from './components/HomePage';
-import Page from './components/Page';
+  Switch
+} from 'react-router-dom'
+import { HomePage, NotFound, Page } from './pages'
+import Preview from './Preview'
 
 const App = (props) => (
-  <Router>
+  <BrowserRouter>
     <Switch>
-      <Route exact path="/" render={routeProps => <HomePage {...routeProps} prismicCtx={props.prismicCtx} />} />
-      <Route exact path="/preview" render={routeProps => <Preview {...routeProps} prismicCtx={props.prismicCtx} />} />
-      <Route exact path="/:uid" render={routeProps => <Page {...routeProps} prismicCtx={props.prismicCtx} />} />
+      <Route exact path='/' component={HomePage} />
+      <Route exact path='/preview' component={Preview} />
+      <Route exact path='/:uid' component={Page} />
       <Route component={NotFound} />
     </Switch>
-  </Router>
-);
+  </BrowserRouter>
+)
 
-export default App;
+export default App

@@ -1,8 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import PrismicApp from './PrismicApp';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
 
 ReactDOM.render(
-  <PrismicApp />,
-  document.getElementById('root'),
-);
+  <App />,
+  document.getElementById('root')
+)
