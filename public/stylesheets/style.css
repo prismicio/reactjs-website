@@ -226,15 +226,20 @@ footer a {
   align-items: center;
 }
 
-/* Loader animation */
-#loader {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1.2em;
+/*
+ * Loader animation
+ */
+ #loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 .lds-ripple {
-  display: inline-block;
-  position: relative;
   width: 64px;
   height: 64px;
 }

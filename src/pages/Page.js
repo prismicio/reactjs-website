@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import { Header, Footer, Loader } from '../components'
+import { Header, Footer } from '../components'
 import { SliceZone } from '../components/slices'
 import NotFound from './NotFound'
 import { client } from '../prismic-configuration'
@@ -23,7 +23,7 @@ const Page = ({ match: { params: { uid } } }) => {
   }, [uid])
 
   if (loading) {
-    return <Loader />
+    return null;
   }
 
   return (

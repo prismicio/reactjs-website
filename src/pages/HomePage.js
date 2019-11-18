@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { Link, RichText } from 'prismic-reactjs'
-import { Header, Footer, Loader } from '../components'
+import { Header, Footer } from '../components'
 import { SliceZone } from '../components/slices'
 import NotFound from './NotFound'
 import { client, linkResolver } from '../prismic-configuration'
@@ -40,7 +40,7 @@ const HomePage = () => {
   )
 
   if (loading) {
-    return <Loader />
+    return null;
   }
 
   return (

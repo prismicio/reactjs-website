@@ -1,5 +1,6 @@
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import qs from 'qs'
+import { Loader } from './components'
 
 import { locationPropType, historyPropType } from './utils/propTypes'
 import { client, linkResolver } from './prismic-configuration'
@@ -16,7 +17,7 @@ const Preview = ({ history, location }) => {
     // Once fetched, redirect to the given url
     client.previewSession(params.token, linkResolver, '/').then(url => history.push(url))
   })
-  return null
+  return <Loader />
 }
 
 Preview.propType = {
