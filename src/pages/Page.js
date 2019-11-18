@@ -1,45 +1,55 @@
-import React, { Fragment, useEffect, useState } from 'react'
-import { Header, Footer } from '../components'
-import { SliceZone } from '../components/slices'
-import NotFound from './NotFound'
-import { client } from '../prismic-configuration'
+import React, { useEffect, useState } from 'react';
 
-const Page = ({ match: { params: { uid } } }) => {
-  const [loading, setLoading] = useState(true)
-  const [page, setPageData] = useState(null)
+import { Header, Footer } from '../components';
+import { SliceZone } from '../components/slices';
+import NotFound from './NotFound';
+import { client } from '../prismic-configuration';
 
+/**
+ * Website page component
+ */
+const Page = ({ match }) => {
+  const [prismicData, setPrismicData] = useState({ pageDoc: null });
+  const [notFound, toggleNotFound] = useState(false);
+
+  const uid = match.params.uid;
+
+  // Get the page document from Prismic
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await client.getByUID('page', uid)
-      setLoading(false)
-      if (result) {
-        return setPageData(result)
-      } else {
-        console.warn('Page document not found. Make sure it exists in your Prismic repository')
+    const fetchPrismicData = async () => {
+      try {
+        const pageDoc = await client.getByUID('page', uid);
+  
+        if (pageDoc) {
+          setPrismicData({ pageDoc });
+        } else {
+          console.warn('Page document was not found. Make sure it exists in your Prismic repository');
+          toggleNotFound(true);
+        }
+      } catch (error) {
+        console.error(error);
+        toggleNotFound(true);
       }
     }
-    fetchData()
-  }, [uid])
+    fetchPrismicData();
+  }, [uid]);
 
-  if (loading) {
-    return null;
+  // Return the page if a document was retrieved from Prismic
+  if (prismicData.pageDoc) {
+    const pageDoc = prismicData.pageDoc;
+    return (
+      <div className="page">
+        <Header />
+        <div className="container">
+          <SliceZone sliceZone={pageDoc.data.page_content} />
+        </div>
+        <Footer />
+      </div>
+    );
+  } else if (notFound) {
+    return <NotFound />;
   }
-
-  return (
-    <Fragment>
-      {
-        page ? (
-          <div className='page'>
-            <Header />
-            <div className='container'>
-              <SliceZone sliceZone={page.data.page_content} />
-            </div>
-            <Footer />
-          </div>
-        ) : <NotFound />
-      }
-    </Fragment>
-  )
+  return null;
 }
 
 export default Page
