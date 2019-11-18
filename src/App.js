@@ -5,8 +5,7 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
-import { HomePage, NotFound, Page } from './pages';
-import Preview from './Preview';
+import { HomePage, NotFound, Page, Preview } from './pages';
 import { apiEndpoint } from './prismic-configuration';
 
 const App = () => {
