@@ -11,7 +11,7 @@ const ImageGallery = ({ slice, prismicCtx }) => {
         <div className='gallery-item' key={index}>
           <img src={item.image.url} alt={item.image.alt} />
           <RichText render={item.image_description} linkResolver={prismicCtx.linkResolver} />
-          {RichText.asText(item.link_label) !== '' ? (
+          {RichText.asText(item.link_label) !== '' && Link.url(item.link, prismicCtx.linkResolver) ? (
             <p className='gallery-link'>
               <RouterLink to={Link.url(item.link, prismicCtx.linkResolver)}>
                 {RichText.asText(item.link_label)}

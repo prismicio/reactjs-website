@@ -9,7 +9,7 @@ const ImageHighlight = ({ slice, prismicCtx }) => (
     <div className='highlight-left'>
       <RichText render={slice.primary.title} linkResolver={prismicCtx.linkResolver} />
       <RichText render={slice.primary.headline} linkResolver={prismicCtx.linkResolver} />
-      {RichText.asText(slice.primary.link_label) !== '' ? (
+      {RichText.asText(slice.primary.link_label) !== '' && Link.url(slice.primary.link, prismicCtx.linkResolver) ? (
         <p>
           <RouterLink to={Link.url(slice.primary.link, prismicCtx.linkResolver)}>
             {RichText.asText(slice.primary.link_label)}
