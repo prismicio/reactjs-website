@@ -13,7 +13,6 @@ const Page = ({ match: { params: { uid } } }) => {
       const result = await client.getByUID('page', uid)
       setLoading(false)
       if (result) {
-        window.PrismicToolbar.setupEditButton()
         return setPageData(result)
       } else {
         console.warn('Page document not found. Make sure it exists in your Prismic repository')
@@ -30,7 +29,7 @@ const Page = ({ match: { params: { uid } } }) => {
     <Fragment>
       {
         page ? (
-          <div className='page' data-wio-id={page.id}>
+          <div className='page'>
             <Header />
             <div className='container'>
               <SliceZone sliceZone={page.data.page_content} />

@@ -13,7 +13,6 @@ const HomePage = () => {
     const fetchData = async () => {
       const result = await client.getSingle('homepage')
       if (result) {
-        window.PrismicToolbar.setupEditButton()
         setHomePageData(result)
       } else {
         console.warn('Homepage document not found. Make sure it exists in your Prismic repository')
@@ -47,7 +46,7 @@ const HomePage = () => {
     <Fragment>
       {
         homePage ? (
-          <div className='homepage' data-wio-id={homePage.id}>
+          <div className='homepage'>
             <Header />
             {homePageBanner(homePage.data.homepage_banner[0])}
             <div className='container'>

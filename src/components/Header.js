@@ -12,7 +12,6 @@ const Header = () => {
     const fetchData = async () => {
       const result = await client.getSingle('menu')
       if (result) {
-        window.PrismicToolbar.setupEditButton()
         setMenuData(result)
       } else {
         console.warn('Menu navigation not found. Make sure it exists in your Prismic repository')

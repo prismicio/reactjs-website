@@ -1,21 +1,33 @@
-import React from 'react'
+import React, { Fragment } from 'react';
+import { Helmet } from 'react-helmet';
 import {
   BrowserRouter,
   Route,
   Switch
-} from 'react-router-dom'
-import { HomePage, NotFound, Page } from './pages'
-import Preview from './Preview'
+} from 'react-router-dom';
+import { HomePage, NotFound, Page } from './pages';
+import Preview from './Preview';
+import { apiEndpoint } from './prismic-configuration';
 
-const App = (props) => (
-  <BrowserRouter>
-    <Switch>
-      <Route exact path='/' component={HomePage} />
-      <Route exact path='/preview' component={Preview} />
-      <Route exact path='/:uid' component={Page} />
-      <Route component={NotFound} />
-    </Switch>
-  </BrowserRouter>
-)
+const App = () => {
+  const repoNameArray = /([^/]+)\.cdn.prismic\.io\/api/.exec(apiEndpoint);
+  const repoName = repoNameArray[1];
 
-export default App
+  return (
+    <Fragment>
+      <Helmet>
+        <script async defer src={`//static.cdn.prismic.io/prismic.js?repo=${repoName}&new=true`} />
+      </Helmet>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path='/' component={HomePage} />
+          <Route exact path='/preview' component={Preview} />
+          <Route exact path='/:uid' component={Page} />
+          <Route component={NotFound} />
+        </Switch>
+      </BrowserRouter>
+    </Fragment>
+  );
+};
+
+export default App;

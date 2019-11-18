@@ -1,9 +1,9 @@
 import Prismic from 'prismic-javascript'
 
-const apiEndpoint = 'https://your-repo-name.cdn.prismic.io/api/v2'
+export const apiEndpoint = 'https://your-repo-name.cdn.prismic.io/api/v2'
 
 // -- Access token if the Prismic repository is not public
-const accessToken = ''
+export const accessToken = ''
 
 // OAuth
 // clientId: 'xxxxxx',
