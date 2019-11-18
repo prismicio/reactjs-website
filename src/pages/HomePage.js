@@ -1,63 +1,56 @@
-import React, { Fragment, useEffect, useState } from 'react'
-import { Link, RichText } from 'prismic-reactjs'
-import { Header, Footer } from '../components'
-import { SliceZone } from '../components/slices'
-import NotFound from './NotFound'
-import { client, linkResolver } from '../prismic-configuration'
+import React, { useEffect, useState } from 'react';
 
+import { Footer, Header, HomepageBanner } from '../components';
+import { SliceZone } from '../components/slices';
+import NotFound from './NotFound';
+import { client } from '../prismic-configuration';
+
+/**
+ * Website homepage component
+ */
 const HomePage = () => {
-  const [loading, setLoading] = useState(true)
-  const [homePage, setHomePageData] = useState(null)
+  const [prismicData, setPrismicData] = useState({ homeDoc: null });
+  const [notFound, toggleNotFound] = useState(false);
 
+  // Get the homepage document from Prismic
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await client.getSingle('homepage')
-      if (result) {
-        setHomePageData(result)
-      } else {
-        console.warn('Homepage document not found. Make sure it exists in your Prismic repository')
+    const fetchPrismicData = async () => {
+      try {
+        const homeDoc = await client.getSingle('homepage');
+  
+        if (homeDoc) {
+          setPrismicData({ homeDoc });
+        } else {
+          console.warn('Homepage document was not found. Make sure it exists in your Prismic repository.');
+          toggleNotFound(true);
+        }
+      } catch (error) {
+        console.error(error);
+        toggleNotFound(true);
       }
-      setLoading(false)
     }
-    fetchData()
-  }, [])
 
-  const homePageBanner = (banner) => (
-    <section className='homepage-banner'
-      style={{ backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url(' + banner.image.url + ')' }}>
-      <div className='banner-content container'>
-        <h2 className='banner-title'>{RichText.asText(banner.title)}</h2>
-        <p className='banner-description'>{RichText.asText(banner.tagline)}</p>
-        {RichText.asText(banner.button_label) !== '' ? (
-          // Displays the button link only if it's been defined
-          <a className='banner-button' href={Link.url(banner.button_link, linkResolver)}>
-            {RichText.asText(banner.button_label)}
-          </a>
-        ) : ''}
+    fetchPrismicData();
+  }, []);
+
+  // Return the page if a document was retrieved from Prismic
+  if (prismicData.homeDoc) {
+    const homeDoc = prismicData.homeDoc;
+
+    return (
+      <div className="homepage">
+        <Header />
+        <HomepageBanner banner={homeDoc.data.homepage_banner[0]} />
+        <div className="container">
+          <SliceZone sliceZone={homeDoc.data.page_content} />
+        </div>
+        <Footer />
       </div>
-    </section>
-  )
-
-  if (loading) {
-    return null;
+    );
+  } else if (notFound) {
+    return <NotFound />;
   }
+  return null;
+};
 
-  return (
-    <Fragment>
-      {
-        homePage ? (
-          <div className='homepage'>
-            <Header />
-            {homePageBanner(homePage.data.homepage_banner[0])}
-            <div className='container'>
-              <SliceZone sliceZone={homePage.data.page_content} />
-            </div>
-            <Footer />
-          </div>
-        ) : <NotFound />
-      }
-    </Fragment>
-  )
-}
-
-export default HomePage
+export default HomePage;
