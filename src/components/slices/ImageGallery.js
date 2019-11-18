@@ -1,8 +1,8 @@
 import React from 'react'
-import { Link as RouterLink } from 'react-router-dom'
-import { Link, RichText } from 'prismic-reactjs'
+import { RichText } from 'prismic-reactjs'
 import { shape, array, arrayOf, object } from 'prop-types'
 import { imagePropType, prismicPropType } from '../../utils/propTypes'
+import { PrismicLink } from '../';
 
 const ImageGallery = ({ slice, prismicCtx }) => {
   const galleryItem = () => {
@@ -11,13 +11,11 @@ const ImageGallery = ({ slice, prismicCtx }) => {
         <div className='gallery-item' key={index}>
           <img src={item.image.url} alt={item.image.alt} />
           <RichText render={item.image_description} linkResolver={prismicCtx.linkResolver} />
-          {RichText.asText(item.link_label) !== '' && Link.url(item.link, prismicCtx.linkResolver) ? (
-            <p className='gallery-link'>
-              <RouterLink to={Link.url(item.link, prismicCtx.linkResolver)}>
-                {RichText.asText(item.link_label)}
-              </RouterLink>
-            </p>
-          ) : '' }
+          <p className='gallery-link'>
+            <PrismicLink link={item.link}>
+              {RichText.asText(item.link_label)}
+            </PrismicLink>
+          </p>
         </div>
       )
     })

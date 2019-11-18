@@ -1,8 +1,9 @@
 import React, { useEffect, useState, Fragment } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
-import { Link, RichText } from 'prismic-reactjs'
-import { client, linkResolver } from '../prismic-configuration'
+import { RichText } from 'prismic-reactjs'
+import { client } from '../prismic-configuration'
 import NotFound from '../pages/NotFound'
+import { PrismicLink } from './';
 
 const Header = () => {
   const [loading, setLoading] = useState(true)
@@ -25,9 +26,9 @@ const Header = () => {
     return menu.data.menu_links.map((menuLink) => {
       return (
         <li key={menuLink.link.id}>
-          <RouterLink to={Link.url(menuLink.link, linkResolver)}>
+          <PrismicLink link={menuLink.link}>
             {RichText.asText(menuLink.label)}
-          </RouterLink>
+          </PrismicLink>
         </li>
       )
     })

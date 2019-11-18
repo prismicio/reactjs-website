@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
-import { Link, RichText } from 'prismic-reactjs';
-import { linkResolver } from '../prismic-configuration';
+import { RichText } from 'prismic-reactjs';
+import { PrismicLink } from './';
 
 /**
  * Homepage banner component
@@ -18,12 +17,12 @@ const HomepageBanner = ({ banner }) => (
       <p className="banner-description">
         {RichText.asText(banner.tagline)}
       </p>
-      <RouterLink
-        className="banner-button"
-        to={Link.url(banner.button_link, linkResolver)}
+      <PrismicLink
+        link={banner.button_link}
+        linkClass="banner-button"
       >
         {RichText.asText(banner.button_label)}
-      </RouterLink>
+      </PrismicLink>
     </div>
   </section>
 );
