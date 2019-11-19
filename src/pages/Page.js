@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
-import { DefaultLayout } from '../components';
-import { SliceZone } from '../components/slices';
+import { DefaultLayout, SliceZone } from '../components';
 import NotFound from './NotFound';
 import { client } from '../prismic-configuration';
 
@@ -42,9 +40,7 @@ const Page = ({ match }) => {
     const pageDoc = prismicData.pageDoc;
     return (
       <DefaultLayout wrapperClass="page">
-        <div className="container">
-          <SliceZone sliceZone={pageDoc.data.page_content} />
-        </div>
+        <SliceZone sliceZone={pageDoc.data.page_content} />
       </DefaultLayout>
     );
   } else if (notFound) {
