@@ -32,6 +32,9 @@ const Page = ({ match }) => {
       }
     }
     fetchPrismicData();
+
+    // Load new page at the top (when linking from the middle of another page)
+    window.scrollTo(0, 0);
   }, [uid]);
 
   // Return the page if a document was retrieved from Prismic
