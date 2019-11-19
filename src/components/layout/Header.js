@@ -1,9 +1,9 @@
 import React, { useEffect, useState, Fragment } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import { RichText } from 'prismic-reactjs'
-import { client } from '../prismic-configuration'
-import NotFound from '../pages/NotFound'
-import { PrismicLink } from './';
+import { client } from '../../prismic-configuration'
+import NotFound from '../../pages/NotFound'
+import { PrismicLink } from '../';
 
 const Header = () => {
   const [loading, setLoading] = useState(true)

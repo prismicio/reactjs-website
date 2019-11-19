@@ -1,5 +1,3 @@
-export { default as Header } from './Header'
-export { default as Footer } from './Footer'
-export { default as Loader } from './Loader'
+export { DefaultLayout, Loader } from './layout'
 export { default as HomepageBanner } from './HomepageBanner'
 export { default as PrismicLink } from './PrismicLink'

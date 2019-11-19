@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { Footer, Header, HomepageBanner } from '../components';
+import { DefaultLayout, HomepageBanner } from '../components';
 import { SliceZone } from '../components/slices';
 import NotFound from './NotFound';
 import { client } from '../prismic-configuration';
@@ -38,14 +38,12 @@ const HomePage = () => {
     const homeDoc = prismicData.homeDoc;
 
     return (
-      <div className="homepage">
-        <Header />
+      <DefaultLayout wrapperClass="homepage">
         <HomepageBanner banner={homeDoc.data.homepage_banner[0]} />
         <div className="container">
           <SliceZone sliceZone={homeDoc.data.page_content} />
         </div>
-        <Footer />
-      </div>
+      </DefaultLayout>
     );
   } else if (notFound) {
     return <NotFound />;
