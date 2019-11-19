@@ -2,13 +2,22 @@ import React from 'react'
 import { RichText } from 'prismic-reactjs'
 import { shape, array, object } from 'prop-types'
 import { prismicPropType, imagePropType } from '../../utils/propTypes'
+import { customLink } from '../../utils/prismicHelpers';
 import { PrismicLink } from '../';
 
 const ImageHighlight = ({ slice, prismicCtx }) => (
   <section className='highlight content-section'>
     <div className='highlight-left'>
-      <RichText render={slice.primary.title} linkResolver={prismicCtx.linkResolver} />
-      <RichText render={slice.primary.headline} linkResolver={prismicCtx.linkResolver} />
+      <RichText
+        render={slice.primary.title}
+        linkResolver={prismicCtx.linkResolver}
+        serializeHyperlink={customLink}
+      />
+      <RichText
+        render={slice.primary.headline}
+        linkResolver={prismicCtx.linkResolver}
+        serializeHyperlink={customLink}
+      />
       <p>
         <PrismicLink link={slice.primary.link}>
           {RichText.asText(slice.primary.link_label)}

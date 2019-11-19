@@ -3,6 +3,7 @@ import { RichText } from 'prismic-reactjs'
 import { shape, array, arrayOf, object } from 'prop-types'
 import { imagePropType, prismicPropType } from '../../utils/propTypes'
 import { PrismicLink } from '../';
+import { customLink } from '../../utils/prismicHelpers';
 
 const ImageGallery = ({ slice, prismicCtx }) => {
   const galleryItem = () => {
@@ -10,7 +11,11 @@ const ImageGallery = ({ slice, prismicCtx }) => {
       return (
         <div className='gallery-item' key={index}>
           <img src={item.image.url} alt={item.image.alt} />
-          <RichText render={item.image_description} linkResolver={prismicCtx.linkResolver} />
+          <RichText
+            render={item.image_description}
+            linkResolver={prismicCtx.linkResolver}
+            serializeHyperlink={customLink}
+          />
           <p className='gallery-link'>
             <PrismicLink link={item.link}>
               {RichText.asText(item.link_label)}
@@ -23,7 +28,11 @@ const ImageGallery = ({ slice, prismicCtx }) => {
 
   return (
     <section className='image-gallery content-section'>
-      <RichText render={slice.primary.gallery_title} linkResolver={prismicCtx.linkResolver} />
+      <RichText
+        render={slice.primary.gallery_title}
+        linkResolver={prismicCtx.linkResolver}
+        serializeHyperlink={customLink}
+      />
       <div className='gallery'>
         {galleryItem()}
       </div>
