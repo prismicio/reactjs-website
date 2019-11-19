@@ -1,5 +1,4 @@
 import React from 'react';
-import { shape, array, string } from 'prop-types';
 import { RichTextField } from '../prismic-elements';
 
 /**
@@ -12,15 +11,6 @@ const TextSection = ({ slice }) => {
       <RichTextField field={slice.primary.rich_text} />
     </section>
   );
-};
-
-TextSection.propTypes = {
-  slice: shape({
-    slice_label: string,
-    primary: shape({
-      rich_text: array.isRequired
-    }).isRequired
-  }).isRequired
 };
 
 export default TextSection;

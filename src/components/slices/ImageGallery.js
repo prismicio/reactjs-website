@@ -1,8 +1,6 @@
 import React from 'react';
-import { shape, array, arrayOf, object } from 'prop-types';
 import { RichText } from 'prismic-reactjs';
 import { PrismicLink, RichTextField } from '../prismic-elements';
-import { imagePropType } from '../../utils/propTypes';
 
 /**
  * Image gallery slice component
@@ -35,22 +33,6 @@ const GalleryItem = ({ item }) => {
       </p>
     </div>
   );
-};
-
-const itemShape = shape({
-  image_description: array,
-  image: imagePropType.isRequired,
-  link_label: array,
-  link: object
-});
-
-ImageGallery.propTypes = {
-  slice: shape({
-    primary: shape({
-      gallery_title: array
-    }).isRequired,
-    items: arrayOf(itemShape).isRequired
-  }).isRequired
 };
 
 export default ImageGallery;

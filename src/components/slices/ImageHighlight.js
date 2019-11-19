@@ -1,8 +1,6 @@
 import React from 'react';
-import { shape, array, object } from 'prop-types';
 import { RichText } from 'prismic-reactjs';
 import { PrismicLink, RichTextField } from '../prismic-elements';
-import { imagePropType } from '../../utils/propTypes';
 
 /**
  * Image highlight slice component
@@ -26,17 +24,5 @@ const ImageHighlight = ({ slice }) => (
     </div>
   </section>
 );
-
-ImageHighlight.propTypes = {
-  slice: shape({
-    primary: shape({
-      featured_image: imagePropType.isRequired,
-      headline: array.isRequired,
-      link_label: array,
-      link: object,
-      title: array.isRequired
-    }).isRequired
-  }).isRequired
-};
 
 export default ImageHighlight;

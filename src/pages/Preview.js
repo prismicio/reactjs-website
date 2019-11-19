@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import qs from 'qs';
-
 import { Loader } from '../components';
 import { client, linkResolver } from '../prismic-configuration';
-import { locationPropType, historyPropType } from '../utils/propTypes';
 
 /**
  * Prismic preview component
@@ -23,11 +21,6 @@ const Preview = ({ history, location }) => {
   });
 
   return <Loader />;
-};
-
-Preview.propType = {
-  location: locationPropType.isRequired,
-  history: historyPropType.isRequired
 };
 
 export default Preview;
