@@ -1,6 +1,6 @@
 import React from 'react';
 import { RichText } from 'prismic-reactjs';
-import { PrismicLink } from './';
+import { PrismicLink } from './prismic-elements';
 
 /**
  * Homepage banner component

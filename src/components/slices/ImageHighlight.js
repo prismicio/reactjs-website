@@ -1,34 +1,31 @@
-import React from 'react'
-import { RichText } from 'prismic-reactjs'
-import { shape, array, object } from 'prop-types'
-import { prismicPropType, imagePropType } from '../../utils/propTypes'
-import { customLink } from '../../utils/prismicHelpers';
-import { PrismicLink } from '../';
+import React from 'react';
+import { shape, array, object } from 'prop-types';
+import { RichText } from 'prismic-reactjs';
+import { PrismicLink, RichTextField } from '../prismic-elements';
+import { imagePropType } from '../../utils/propTypes';
 
-const ImageHighlight = ({ slice, prismicCtx }) => (
-  <section className='highlight content-section'>
-    <div className='highlight-left'>
-      <RichText
-        render={slice.primary.title}
-        linkResolver={prismicCtx.linkResolver}
-        serializeHyperlink={customLink}
-      />
-      <RichText
-        render={slice.primary.headline}
-        linkResolver={prismicCtx.linkResolver}
-        serializeHyperlink={customLink}
-      />
+/**
+ * Image highlight slice component
+ */
+const ImageHighlight = ({ slice }) => (
+  <section className="highlight content-section">
+    <div className="highlight-left">
+      <RichTextField field={slice.primary.title} />
+      <RichTextField field={slice.primary.headline} />
       <p>
         <PrismicLink link={slice.primary.link}>
           {RichText.asText(slice.primary.link_label)}
         </PrismicLink>
       </p>
     </div>
-    <div className='highlight-right'>
-      <img src={slice.primary.featured_image.url} alt={slice.primary.featured_image.alt} />
+    <div className="highlight-right">
+      <img
+        src={slice.primary.featured_image.url}
+        alt={slice.primary.featured_image.alt}
+      />
     </div>
   </section>
-)
+);
 
 ImageHighlight.propTypes = {
   slice: shape({
@@ -39,8 +36,7 @@ ImageHighlight.propTypes = {
       link: object,
       title: array.isRequired
     }).isRequired
-  }).isRequired,
-  prismicCtx: prismicPropType.isRequired
-}
+  }).isRequired
+};
 
-export default ImageHighlight
+export default ImageHighlight;

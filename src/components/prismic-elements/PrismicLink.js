@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { Link } from 'prismic-reactjs';
-import { linkResolver } from '../prismic-configuration';
+import { linkResolver } from '../../prismic-configuration';
 
 /**
  * React link for Prismic link fields

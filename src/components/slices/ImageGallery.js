@@ -1,51 +1,48 @@
-import React from 'react'
-import { RichText } from 'prismic-reactjs'
-import { shape, array, arrayOf, object } from 'prop-types'
-import { imagePropType, prismicPropType } from '../../utils/propTypes'
-import { PrismicLink } from '../';
-import { customLink } from '../../utils/prismicHelpers';
+import React from 'react';
+import { shape, array, arrayOf, object } from 'prop-types';
+import { RichText } from 'prismic-reactjs';
+import { PrismicLink, RichTextField } from '../prismic-elements';
+import { imagePropType } from '../../utils/propTypes';
 
-const ImageGallery = ({ slice, prismicCtx }) => {
-  const galleryItem = () => {
-    return slice.items.map((item, index) => {
-      return (
-        <div className='gallery-item' key={index}>
-          <img src={item.image.url} alt={item.image.alt} />
-          <RichText
-            render={item.image_description}
-            linkResolver={prismicCtx.linkResolver}
-            serializeHyperlink={customLink}
-          />
-          <p className='gallery-link'>
-            <PrismicLink link={item.link}>
-              {RichText.asText(item.link_label)}
-            </PrismicLink>
-          </p>
-        </div>
-      )
-    })
-  }
-
+/**
+ * Image gallery slice component
+ */
+const ImageGallery = ({ slice }) => {
   return (
-    <section className='image-gallery content-section'>
-      <RichText
-        render={slice.primary.gallery_title}
-        linkResolver={prismicCtx.linkResolver}
-        serializeHyperlink={customLink}
-      />
-      <div className='gallery'>
-        {galleryItem()}
+    <section className="image-gallery content-section">
+      <RichTextField field={slice.primary.gallery_title} />
+      <div className="gallery">
+        {slice.items.map((item, index) => (
+          <GalleryItem item={item} key={index} />
+        ))}
       </div>
     </section>
-  )
-}
+  );
+};
+
+/**
+ * Gallery item component
+ */
+const GalleryItem = ({ item }) => {
+  return (
+    <div className="gallery-item">
+      <img src={item.image.url} alt={item.image.alt} />
+      <RichTextField field={item.image_description} />
+      <p className="gallery-link">
+        <PrismicLink link={item.link}>
+          {RichText.asText(item.link_label)}
+        </PrismicLink>
+      </p>
+    </div>
+  );
+};
 
 const itemShape = shape({
   image_description: array,
   image: imagePropType.isRequired,
   link_label: array,
   link: object
-})
+});
 
 ImageGallery.propTypes = {
   slice: shape({
@@ -53,8 +50,7 @@ ImageGallery.propTypes = {
       gallery_title: array
     }).isRequired,
     items: arrayOf(itemShape).isRequired
-  }).isRequired,
-  prismicCtx: prismicPropType.isRequired
-}
+  }).isRequired
+};
 
-export default ImageGallery
+export default ImageGallery;

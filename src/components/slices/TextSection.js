@@ -1,23 +1,18 @@
-import React from 'react'
-import { RichText } from 'prismic-reactjs'
-import { shape, array, string } from 'prop-types'
-import { prismicPropType } from '../../utils/propTypes'
-import { customLink } from '../../utils/prismicHelpers';
+import React from 'react';
+import { shape, array, string } from 'prop-types';
+import { RichTextField } from '../prismic-elements';
 
-const TextSection = ({ slice, prismicCtx }) => {
-  const sectionClass = slice.slice_label ? `text-section-${slice.slice_label}` : 'text-section-1col'
+/**
+ * Text section slice component
+ */
+const TextSection = ({ slice }) => {
+  const sectionClass = slice.slice_label ? `text-section-${slice.slice_label}` : 'text-section-1col';
   return (
     <section className={`content-section ${sectionClass}`}>
-      <div>
-        <RichText
-          render={slice.primary.rich_text}
-          linkResolver={prismicCtx.linkResolver}
-          serializeHyperlink={customLink}
-        />
-      </div>
+      <RichTextField field={slice.primary.rich_text} />
     </section>
-  )
-}
+  );
+};
 
 TextSection.propTypes = {
   slice: shape({
@@ -25,8 +20,7 @@ TextSection.propTypes = {
     primary: shape({
       rich_text: array.isRequired
     }).isRequired
-  }).isRequired,
-  prismicCtx: prismicPropType.isRequired
-}
+  }).isRequired
+};
 
-export default TextSection
+export default TextSection;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { RichText } from 'prismic-reactjs';
-import { PrismicLink } from '../';
+import { PrismicLink } from '../prismic-elements';
 
 /**
  * Site header/nav component

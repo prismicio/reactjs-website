@@ -1,12 +1,15 @@
-import React from 'react'
-import { shape } from 'prop-types'
-import { imagePropType } from '../../utils/propTypes'
+import React from 'react';
+import { shape } from 'prop-types';
+import { imagePropType } from '../../utils/propTypes';
 
+/**
+ * Full width image slice component
+ */
 const FullWidthImage = ({ slice }) => (
-  <section className='full-width-image content-section'>
+  <section className="full-width-image content-section">
     <img src={slice.primary.image.url} alt={slice.primary.image.alt} />
   </section>
-)
+);
 
 FullWidthImage.propTypes = {
   slice: shape({
@@ -14,6 +17,6 @@ FullWidthImage.propTypes = {
       image: imagePropType.isRequired
     }).isRequired
   }).isRequired
-}
+};
 
-export default FullWidthImage
+export default FullWidthImage;

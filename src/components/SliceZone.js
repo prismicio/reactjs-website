@@ -6,7 +6,6 @@ import {
   Quote,
   TextSection
 } from './slices';
-import { client, linkResolver } from '../prismic-configuration';
 
 /**
  * Prismic Slice Zone component
@@ -19,13 +18,13 @@ const SliceZone = ({ sliceZone }) => (
           case ('full_width_image'):
             return <FullWidthImage slice={slice} key={`slice-${index}`} />;
           case ('image_gallery'):
-            return <ImageGallery slice={slice} key={`slice-${index}`} prismicCtx={{ client, linkResolver }} />;
+            return <ImageGallery slice={slice} key={`slice-${index}`} />;
           case ('image_highlight'):
-            return <ImageHighlight slice={slice} key={`slice-${index}`} prismicCtx={{ client, linkResolver }} />;
+            return <ImageHighlight slice={slice} key={`slice-${index}`} />;
           case ('quote'):
             return <Quote slice={slice} key={`slice-${index}`} />;
           case ('text_section'):
-            return <TextSection slice={slice} key={`slice-${index}`} prismicCtx={{ client, linkResolver }} />;
+            return <TextSection slice={slice} key={`slice-${index}`} />;
           default:
             return null;
         }
