@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import qs from 'qs';
 import { Loader } from '../components';
-import { client, linkResolver } from '../prismic-configuration';
+import {  linkResolver } from '../prismic-configuration';
+import { client } from '../utils/prismicHelpers';
 
 /**
  * Prismic preview component

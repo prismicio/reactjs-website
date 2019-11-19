@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { DefaultLayout, HomepageBanner, SliceZone } from '../components';
 import NotFound from './NotFound';
-import { client } from '../prismic-configuration';
+import { client } from '../utils/prismicHelpers';
 
 /**
  * Website homepage component
