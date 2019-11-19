@@ -1,10 +1,10 @@
 import React from 'react';
 import { Footer, Header } from './';
 
-const DefaultLayout = ({ wrapperClass, children }) => {
+const DefaultLayout = ({ wrapperClass, menuDoc, children }) => {
   return (
     <div className={wrapperClass}>
-      <Header />
+      <Header menuDoc={menuDoc} />
       {children}
       <Footer />
     </div>

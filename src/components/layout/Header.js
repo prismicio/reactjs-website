@@ -1,61 +1,45 @@
-import React, { useEffect, useState, Fragment } from 'react'
-import { Link as RouterLink } from 'react-router-dom'
-import { RichText } from 'prismic-reactjs'
-import { client } from '../../prismic-configuration'
-import NotFound from '../../pages/NotFound'
+import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+import { RichText } from 'prismic-reactjs';
 import { PrismicLink } from '../';
 
-const Header = () => {
-  const [loading, setLoading] = useState(true)
-  const [menu, setMenuData] = useState(null)
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await client.getSingle('menu')
-      if (result) {
-        setMenuData(result)
-      } else {
-        console.warn('Menu navigation not found. Make sure it exists in your Prismic repository')
-      }
-      setLoading(false)
-    }
-    fetchData()
-  }, [])
-
-  const menuLinks = () => {
-    return menu.data.menu_links.map((menuLink) => {
-      return (
-        <li key={menuLink.link.id}>
-          <PrismicLink link={menuLink.link}>
-            {RichText.asText(menuLink.label)}
-          </PrismicLink>
-        </li>
-      )
-    })
+/**
+ * Site header/nav component
+ */
+const Header = ({ menuDoc }) => {
+  if (menuDoc) {
+    return (
+      <header className="site-header">
+        <RouterLink to="./">
+          <div className="logo">Example Site</div>
+        </RouterLink>
+        <nav>
+          <ul>
+            {menuDoc.data.menu_links.map(menuLink => (
+              <MenuLink
+                menuLink={menuLink}
+                key={menuLink.link.id}
+              />
+            ))}
+          </ul>
+        </nav>
+      </header>
+    );
   }
+  return null;
+};
 
-  if (loading) {
-    return null
-  }
-
+/**
+ * Menu link component
+ */
+const MenuLink = ({ menuLink }) => {
   return (
-    <Fragment>
-      {
-        menu ? (
-          <header className='site-header'>
-            <RouterLink to='./'>
-              <div className='logo'>Example Site</div>
-            </RouterLink>
-            <nav>
-              <ul>
-                {menuLinks()}
-              </ul>
-            </nav>
-          </header>
-        ) : <NotFound />
-      }
-    </Fragment>
-  )
-}
+    <li>
+      <PrismicLink link={menuLink.link}>
+        {RichText.asText(menuLink.label)}
+      </PrismicLink>
+    </li>
+  );
+};
 
-export default Header
+export default Header;
