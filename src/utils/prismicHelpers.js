@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Prismic from 'prismic-javascript'
+import Prismic from '@prismicio/client';
 import { apiEndpoint, accessToken, linkResolver } from '../prismic-configuration';
 
 // Helper function to convert Prismic Rich Text links to React Link components
