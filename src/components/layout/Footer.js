@@ -6,6 +6,7 @@ import React from 'react';
 const Footer = () => (
   <footer>
     <p>
+      <h1>What is this?</h1>
       Proudly published with &nbsp;
       <a href="https://prismic.io" target="_blank" rel="noopener noreferrer">Prismic</a>
       <br />
