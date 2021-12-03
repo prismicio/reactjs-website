@@ -1,55 +1,39 @@
-import React, { useEffect, useState } from 'react';
-import { DefaultLayout, HomepageBanner, SliceZone } from '../components';
-import NotFound from './NotFound';
-import { client } from '../utils/prismicHelpers';
+import { useEffect } from "react";
+import { SliceZone, useSinglePrismicDocument } from "@prismicio/react";
+
+import { components } from "../slices";
+import { Layout } from "../components/Layout";
+import { HomepageBanner } from "../components/HomepageBanner";
+import { NotFound } from "./NotFound";
 
 /**
  * Website homepage component
  */
-const HomePage = () => {
-  const [prismicData, setPrismicData] = useState({ homeDoc: null, menuDoc: null });
-  const [notFound, toggleNotFound] = useState(false);
+export const HomePage = () => {
+  const [home, homeState] = useSinglePrismicDocument("homepage");
+  const [menu, menuState] = useSinglePrismicDocument("menu");
 
-  // Get the homepage document from Prismic
+  const notFound = homeState.state === "failed" || menuState.state === "failed";
+
   useEffect(() => {
-    const fetchPrismicData = async () => {
-      try {
-        const homeDoc = await client.getSingle('homepage');
-        const menuDoc = await client.getSingle('menu');
-  
-        if (homeDoc) {
-          setPrismicData({ homeDoc, menuDoc });
-        } else {
-          console.warn('Homepage document was not found. Make sure it exists in your Prismic repository.');
-          toggleNotFound(true);
-        }
-      } catch (error) {
-        console.error(error);
-        toggleNotFound(true);
-      }
+    if (homeState.state === "failed") {
+      console.warn(
+        "Homepage document was not found. Make sure it exists in your Prismic repository."
+      );
     }
-
-    fetchPrismicData();
-  }, []);
+  }, [homeState.state]);
 
   // Return the page if a document was retrieved from Prismic
-  if (prismicData.homeDoc) {
-    const homeDoc = prismicData.homeDoc;
-    const menuDoc = prismicData.menuDoc;
-
+  if (home && menu) {
     return (
-      <DefaultLayout
-        wrapperClass="homepage"
-        menuDoc={menuDoc}
-      >
-        <HomepageBanner banner={homeDoc.data.homepage_banner[0]} />
-        <SliceZone sliceZone={homeDoc.data.page_content} />
-      </DefaultLayout>
+      <Layout wrapperClass="homepage" menuDoc={menu}>
+        <HomepageBanner banner={home.data.homepage_banner[0]} />
+        <SliceZone slices={home.data.page_content} components={components} />
+      </Layout>
     );
   } else if (notFound) {
     return <NotFound />;
   }
+
   return null;
 };
-
-export default HomePage;

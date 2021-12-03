@@ -1,32 +1,29 @@
-import React, { Fragment } from 'react';
-import { Helmet } from 'react-helmet';
-import {
-  BrowserRouter,
-  Route,
-  Switch
-} from 'react-router-dom';
-import { HomePage, NotFound, Page, Preview } from './pages';
-import { apiEndpoint } from './prismic-configuration';
+import { PrismicProvider, PrismicToolbar } from "@prismicio/react";
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 
-const App = () => {
-  const repoNameArray = /([^/]+)\.cdn.prismic\.io\/api/.exec(apiEndpoint);
-  const repoName = repoNameArray[1];
+import { client, repositoryName } from "./prismic";
+import { HomePage } from "./pages/HomePage";
+import { NotFound } from "./pages/NotFound";
+import { Page } from "./pages/Page";
+import { Preview } from "./pages/Preview";
 
+export const App = () => {
   return (
-    <Fragment>
-      <Helmet>
-        <script async defer src={`//static.cdn.prismic.io/prismic.js?repo=${repoName}&new=true`} />
-      </Helmet>
+    <PrismicProvider
+      client={client}
+      internalLinkComponent={({ href, ...props }) => (
+        <Link to={href} {...props} />
+      )}
+    >
       <BrowserRouter>
-        <Switch>
-          <Route exact path='/' component={HomePage} />
-          <Route exact path='/preview' component={Preview} />
-          <Route exact path='/:uid' component={Page} />
-          <Route component={NotFound} />
-        </Switch>
+        <Routes>
+          <Route exact path="/" element={<HomePage />} />
+          <Route exact path="/preview" element={<Preview />} />
+          <Route exact path="/:uid" element={<Page />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </BrowserRouter>
-    </Fragment>
+      <PrismicToolbar repositoryName={repositoryName} />
+    </PrismicProvider>
   );
 };
-
-export default App;

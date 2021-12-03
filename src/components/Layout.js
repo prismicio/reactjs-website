@@ -1,10 +1,10 @@
-import React from 'react';
-import { Footer, Header } from './';
+import { Header } from "./Header";
+import { Footer } from "./Footer";
 
 /**
  * Default site layout component
  */
-const DefaultLayout = ({ wrapperClass, menuDoc, children }) => {
+export const Layout = ({ wrapperClass, menuDoc, children }) => {
   return (
     <div className={wrapperClass}>
       <Header menuDoc={menuDoc} />
@@ -12,6 +12,4 @@ const DefaultLayout = ({ wrapperClass, menuDoc, children }) => {
       <Footer />
     </div>
   );
-}
-
-export default DefaultLayout;
+};
