@@ -1,58 +1,44 @@
-import React, { useEffect, useState } from 'react';
-import { DefaultLayout, SliceZone } from '../components';
-import NotFound from './NotFound';
-import { client } from '../utils/prismicHelpers';
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import {
+  SliceZone,
+  usePrismicDocumentByUID,
+  useSinglePrismicDocument,
+} from "@prismicio/react";
+
+import { components } from "../slices";
+import { Layout } from "../components/Layout";
+import { NotFound } from "./NotFound";
 
 /**
  * Website page component
  */
-const Page = ({ match }) => {
-  const [prismicData, setPrismicData] = useState({ pageDoc: null, menuDoc: null });
-  const [notFound, toggleNotFound] = useState(false);
+export const Page = () => {
+  const { uid } = useParams();
 
-  const uid = match.params.uid;
+  const [page, pageState] = usePrismicDocumentByUID("page", uid);
+  const [menu, menuState] = useSinglePrismicDocument("menu");
 
-  // Get the page document from Prismic
+  const notFound = pageState.state === "failed" || menuState.state === "failed";
+
   useEffect(() => {
-    const fetchPrismicData = async () => {
-      try {
-        const pageDoc = await client.getByUID('page', uid);
-        const menuDoc = await client.getSingle('menu');
-  
-        if (pageDoc) {
-          setPrismicData({ pageDoc, menuDoc });
-        } else {
-          console.warn('Page document was not found. Make sure it exists in your Prismic repository');
-          toggleNotFound(true);
-        }
-      } catch (error) {
-        console.error(error);
-        toggleNotFound(true);
-      }
+    if (pageState.state === "failed") {
+      console.warn(
+        "Page document was not found. Make sure it exists in your Prismic repository"
+      );
     }
-    fetchPrismicData();
-
-    // Load new page at the top (when linking from the middle of another page)
-    window.scrollTo(0, 0);
-  }, [uid]);
+  }, []);
 
   // Return the page if a document was retrieved from Prismic
-  if (prismicData.pageDoc) {
-    const pageDoc = prismicData.pageDoc;
-    const menuDoc = prismicData.menuDoc;
-
+  if (page && menu) {
     return (
-      <DefaultLayout
-        wrapperClass="page"
-        menuDoc={menuDoc}
-      >
-        <SliceZone sliceZone={pageDoc.data.page_content} />
-      </DefaultLayout>
+      <Layout wrapperClass="page" menuDoc={menu}>
+        <SliceZone slices={page.data.page_content} components={components} />
+      </Layout>
     );
   } else if (notFound) {
     return <NotFound />;
   }
-  return null;
-}
 
-export default Page
+  return null;
+};

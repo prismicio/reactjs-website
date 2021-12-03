@@ -1,7 +1,9 @@
 # Prismic & React.js Example Multi-Page Site
+
 > [React.js](https://reactjs.org/) example Multi-Page Site with content managed in [Prismic](https://prismic.io)
 
 ## Check out the dedicated article to get this project up and running
+
 > [Prismic project guide](https://intercom.help/prismicio/en/articles/2731304-sample-multi-page-site-with-navigation-in-reactjs)
 
 ## Learn more about using Prismic with React.js
