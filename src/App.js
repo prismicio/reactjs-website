@@ -17,9 +17,9 @@ export const App = () => {
     >
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<HomePage />} />
-          <Route exact path="/preview" element={<Preview />} />
-          <Route exact path="/:uid" element={<Page />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/preview" element={<Preview />} />
+          <Route path="/:uid" element={<Page />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
