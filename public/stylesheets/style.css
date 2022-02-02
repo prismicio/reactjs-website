@@ -1,5 +1,6 @@
 /* General */
 .container,
+.content-section,
 header,
 footer {
   max-width: 980px;
