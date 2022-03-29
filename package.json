@@ -3,7 +3,7 @@
   "description": "An example multi-page site built using React.js connected to Prismic CMS",
   "author": "Prismic",
   "dependencies": {
-    "@prismicio/client": "^6.0.0-beta.4",
+    "@prismicio/client": "^6.4.2",
     "@prismicio/helpers": "^2.0.0-beta.6",
     "@prismicio/react": "^2.0.0-beta.9",
     "react": "^17.0.2",
